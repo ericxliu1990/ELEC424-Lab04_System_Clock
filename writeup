@@ -5,9 +5,20 @@ Part 1: 6
 
 Q1. What is the main role of the linker script? 
 
+Done
+
+
 Q2. What does the ENTRY command in the linker script do?
 
+Done
+
+
 Q3. Where in the STM memory map are the three ELF segments placed (i.e. flash, sram, system memory)?
+
+text (program code and other data) -> flash
+data segment (initialized data section) -> SRAM
+BSS segment (uninitialized data) -> SRAM
+
 
 Part 2: 4
 
