@@ -33,7 +33,7 @@
 ENTRY(Reset_Handler)
 
 /* Highest address of the user mode stack */
-_estack = 0x20005000;    /* end of 20K RAM */ //CHANGED: SRAM size is 20K (20480), hex = 5000
+_estack = 0x20005000;    /* end of 20K RAM */ /*CHANGED: SRAM size is 20K (20480), hex = 5000*/
 
 /* Generate a link error if heap and stack don't fit into RAM */
 _Min_Heap_Size = 0;      /* required amount of heap  */
@@ -42,9 +42,9 @@ _Min_Stack_Size = 0x200; /* required amount of stack */
 /* Specify the memory areas */
 MEMORY
 {
-  FLASH (rx)      : ORIGIN = 0x08000000, LENGTH = 128K // CHANGED: flash memory = 128K 
-  // http://www.st.com/web/catalog/mmc/FM141/SC1169/SS1031/LN1565/PF189782?sc=internet/mcu/product/189782.jsp
-  RAM (xrw)       : ORIGIN = 0x20000000, LENGTH = 20K //CHANGED: SRAM size = 20K
+  FLASH (rx)      : ORIGIN = 0x08000000, LENGTH = 128K /* CHANGED: flash memory = 128K */
+  /* Source: http://www.st.com/web/catalog/mmc/FM141/SC1169/SS1031/LN1565/PF189782?sc=internet/mcu/product/189782.jsp */
+  RAM (xrw)       : ORIGIN = 0x20000000, LENGTH = 20K /*CHANGED: SRAM size = 20K*/
   MEMORY_B1 (rx)  : ORIGIN = 0x60000000, LENGTH = 0K
 }
 
