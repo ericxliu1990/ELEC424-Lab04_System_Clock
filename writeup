@@ -1,16 +1,22 @@
+
 Lab03: Blinky
-<PUT NAMES HERE>
+<Xue Liu, Zichao Wang>
 
 Part 1: 6
 
 Q1. What is the main role of the linker script? 
 
-Done
+to specify the memory layout and to initialize the various 
+memory sections used by the firmware when executed. These 
+scripts are essential because they specify the beginning 
+addresses of flash and RAM and also their sizes. 
 
 
 Q2. What does the ENTRY command in the linker script do?
 
-Done
+The line number 2 (ENTRY) specifies the entry 
+point of the program, that is, the first 
+instruction to be executed in your program.
 
 
 Q3. Where in the STM memory map are the three ELF segments placed (i.e. flash, sram, system memory)?
@@ -24,4 +30,14 @@ Part 2: 4
 
 Q4. What role does the startup file (startup_stm32f10x_md.s) play?
 
+The startup file allocates and initializes space for the stack before software (in this case, written in C) can be properly excuted. In particular, it:
+- Sets the initial SP
+- Sets the initial PC == Reset_Handler
+- Sets the vector table entries with the exceptions ISR address
+- Configures the clock system
+- Branches to __main in the C library (which eventually calls main()).
+
+
 Q5. Can you get the red LED to flash? Why is this harder? This is a good example of some of the challenges you will face with embedded devices and why the reference manual/STM-examples are key.
+
+Yes, but it is difficult. the red LED is connected to PB4/JNTRST, which the GPIO pin mapped to JTAG debug port. The LED is blinking corresponding the the JTAG debugging signal, which is not controlled by the program we are writing. If we want to configure this particular GPIO pin to user controlled LED, we need to re-map the JTAG debug signal to other GPIO pin, which might mess up the entire debug process.
