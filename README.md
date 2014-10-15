@@ -1,4 +1,4 @@
-ELEC424-Lab03_Blinky
+ELEC424-Lab04_System_clock
 ====================
 
-Lab to get Crazyflie LED to blink.
+Lab to use external clock to drive green LED.

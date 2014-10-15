@@ -38,6 +38,7 @@ CFLAGS = -O0 -g3 $(PROCESSOR) $(INCLUDE) $(STFLAGS) -Wl,--gc-sections -T $(PRO_R
 # object files
 OBJS = $(STARTUP_PATH)/startup_stm32f10x_md.s \
 	blinky.c \
+	sys_clk_init.c\
 	stm32f10x_it.c\
 	$(DEV_LIB)/src/stm32f10x_rcc.c \
 	$(DEV_LIB)/src/stm32f10x_gpio.c \
@@ -47,12 +48,12 @@ OBJS = $(STARTUP_PATH)/startup_stm32f10x_md.s \
 all: compile flash
 
 compile:
-	$(CC) $(CFLAGS) $(OBJS) -o $(FILENAME).elf
+	@$(CC) $(CFLAGS) $(OBJS) -o $(FILENAME).elf
 
 # Program .elf into Crazyflie flash memory via the busblaster
 OCDFLAG =  -d0 -f interface/busblaster.cfg -f target/stm32f1x.cfg -c init -c targets -c "reset halt" 
 flash:
-	openocd $(OCDFLAG) -c "flash write_image erase $(FILENAME).elf" -c "verify_image $(FILENAME).elf" -c "reset run" -c shutdown
+	@openocd $(OCDFLAG) -c "flash write_image erase $(FILENAME).elf" -c "verify_image $(FILENAME).elf" -c "reset run" -c shutdown
 
 # Runs OpenOCD, opens GDB terminal, and establishes connection with Crazyflie
 debug:

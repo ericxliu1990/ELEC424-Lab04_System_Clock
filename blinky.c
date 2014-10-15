@@ -7,6 +7,7 @@ Drive: STM32F10x_StdPeriph_Lib_V3.5.0
 
 /* Include files*/
 #include "blinky.h"
+#include "sys_clk_init.h"
 
 /*Public functions*/
 
@@ -64,6 +65,7 @@ void LED_Toggle()
 */
 int main(void)
 {
+	SystemInit_User();
 	LED_Init();
 	
 	if (SysTick_Config(SystemCoreClock / 1000))
